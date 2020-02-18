@@ -14,6 +14,15 @@ h3 {
     text-align:right;
 }
 
+form {
+    width:100%;
+    padding:0;
+    margin:0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: left;
+}
+
 input {
     padding:0.4em;
     margin:.1em;
@@ -23,15 +32,18 @@ input {
 }
 
 #city {
-    width:200px;
+    min-width:100px;
+    max-width:200px;
 }
 
 #state {
-    width:60px;
+    min-width:40px;
+    max-width:60px;
 }
 
 #zip {
-    width:100px;
+    min-width:50px;
+    max-width:100px;
 }
 
 #submit {
@@ -43,7 +55,13 @@ input {
     border:1px solid #b9f5bc;
     background-color:#6dff74;
     transition: background-color .5s ease-out;
-    color:#202020
+    color:#202020;
+    text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  min-width:80px;
 }
 
 #submit:hover {
@@ -59,7 +77,8 @@ input {
 }
 
 .weather-card {
-    width:220px;
+    width:200px;
+    
     border-radius: 0.2em;
     border:1px solid #999;
     padding:.3em;
@@ -121,7 +140,7 @@ input {
 
 .close {
     position: relative;
-    right: 190px;
+    right: 170px;
     top: -10px;
     background: red;
     border: 2px solid;

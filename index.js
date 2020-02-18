@@ -2,7 +2,7 @@
     A lot of the "appendChild" and "createElement" could be handled with string literals, 
     but this explains DOM manipulation a bit better than innerHTML.
 */
-
+// Nice. Would you say that this is safe for a production site?
 import { baseUrl, iconUrl } from "./config.js";
 const form = document.getElementById("location");
 const content = document.getElementById("content");
@@ -72,7 +72,7 @@ const createWeatherCard = (result) => {
     } else if (curTemp > 70 && curTemp <= 90) {
         temp = "hot";
     } else {
-        temp = "hell";
+        temp = "hell"; // lol
     }
 
     tempNow.setAttribute("class", `current-temp ${temp}`);
@@ -120,6 +120,8 @@ const updatePage = (result) => {
 }
 
 const buildQuery = () => {
+    // What are some resons for doing `querySelector` from the `form` object
+    // and not using `document.getElementById`?    
     let city = form.querySelector("#city").value;
     let state = form.querySelector("#state").value;
     let zip = form.querySelector("#zip").value;
@@ -135,6 +137,7 @@ const buildQuery = () => {
     queryString += `&units=${units}`;
     return queryString;
 
+    // I appreciate choosing the more easily explainable version
     /*
     This would be how I write it normally, but it is complex to explain
     `${city ? city : ""}${state ? `,${state}` :""},us${zip? `&zip=${zip},us` :""}&units=${units}`;

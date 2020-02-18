@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>US Weather APP</title>
+
+    <link rel="icon" href="./favicon.ico" />
+
+    <link rel="stylesheet" href="./index.css" />
+
+    <!-- using type=modules even if you are not exporting keeps namespace uncluttered-->
+    <script type="module" src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>US Weather Aapp</h1>
+    </header>
+    <label>Fill out one ore more fields to get the weather (US cities only)</label>
+    <form id="location">
+        <input id="city" placeholder="city" />
+        <input id="state" placeholder="state" />
+        <input id="zip" placeholder="zip" />
+        <button type="button" id="submit">Find Weather</button>
+    </form>
+    <div id="errors"></div>
+    <div id="content"></div>
+</body>
+
+</html>

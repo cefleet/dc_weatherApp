@@ -12,7 +12,6 @@ const errors = document.getElementById("errors");
 
 //create the functions
 const createWeatherCard = (result) => {
-    console.log(result);
     errors.innerHTML = "";
 
     let card = document.createElement("div");

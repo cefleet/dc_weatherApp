@@ -129,3 +129,11 @@ input {
     border-radius: .3em;
     cursor: pointer;
 }
+
+.error {
+    background:#f55151;
+    padding:.6em;
+    margin:.1em;
+    font-weight:bold;
+    border-radius: .2em;
+}

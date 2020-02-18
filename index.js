@@ -7,12 +7,11 @@ import { baseUrl, iconUrl } from "./config.js";
 const form = document.getElementById("location");
 const content = document.getElementById("content");
 const submitButton = document.getElementById("submit");
-const errors = document.getElementById("errors");
-//const cards = [];//even though it is a const, you can still add to the array
+const errorContainer = document.getElementById("errors");
 
 //create the functions
 const createWeatherCard = (result) => {
-    errors.innerHTML = "";
+    errorContainer.innerHTML = "";
 
     let card = document.createElement("div");
     card.setAttribute("class", "weather-card");
@@ -24,7 +23,7 @@ const createWeatherCard = (result) => {
     close.setAttribute("class", "close");
     close.appendChild(document.createTextNode("X"));
     title.appendChild(close);
-    close.addEventListener("click", ()=>{
+    close.addEventListener("click", () => {
         content.removeChild(card);
     });
 
@@ -85,9 +84,9 @@ const createWeatherCard = (result) => {
     high.setAttribute("class", "high");
     high.appendChild(document.createTextNode(`High : ${Math.round(result.main.temp_max)}`));
     let low = document.createElement("div");
-    low.setAttribute("class","low");
+    low.setAttribute("class", "low");
     low.appendChild(document.createTextNode(`Low : ${Math.round(result.main.temp_min)}`));
-    
+
 
     tempContainer.appendChild(high);
     tempContainer.appendChild(low);
@@ -108,19 +107,8 @@ const updatePage = (result) => {
     if (result.hasOwnProperty("error")) {
         let error = document.createElement("div");
         error.setAttribute("class", "error");
-
-        //using a switch in case there are several error codes.
-        //but there is just the one right now.        
-        switch (result.error) {
-            case 'noCityOrZip':
-                error.appendChild(
-                    document.createTextNode("A city or a zip code is required.")
-                );
-                break;
-            default:
-                error.appendChild(document.createTextNode(result.error));
-        }
-        errors.appendChild(error);
+        error.appendChild(document.createTextNode(result.error));
+        errorContainer.appendChild(error);
         return;
     }
 
@@ -157,8 +145,8 @@ const findWeather = () => {
 
     let queryString = buildQuery();
     if (!queryString) {
-        updatePage({ "error": "noCityOrZip" });
-        return;//prevent fetch
+        updatePage({ "error": "A city and state or a zip code is required." });
+        return;//prevent fetch if error
     }
 
     let fetchOptions = {
@@ -179,7 +167,7 @@ const findWeather = () => {
             }
             updatePage({ error: json.message });
         })
-        .catch(err => updatePage({ error: err }))
+        .catch(err => updatePage({ error: err }));//if the fetch returns an error
 };
 
 //add the event listeners

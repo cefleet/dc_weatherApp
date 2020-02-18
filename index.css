@@ -11,6 +11,7 @@ h1 {
 }
 h3 {
     border-bottom:1px solid #b6ceee;
+    text-align:right;
 }
 
 input {
@@ -120,7 +121,7 @@ input {
 
 .close {
     position: relative;
-    left: 120px;
+    right: 190px;
     top: -10px;
     background: red;
     border: 2px solid;
